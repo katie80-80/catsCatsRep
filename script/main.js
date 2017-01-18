@@ -1,39 +1,40 @@
 (function() {
-  var images = document.querySelectorAll(".image-holder"),
- heading = document.querySelector(".heading"),
- subHead = document.querySelector(".main-copy h2"),
- text = document.querySelector(".main-copy p"),
+ //  var images = document.querySelectorAll(".image-holder"),
+ // heading = document.querySelector(".heading"),
+ // subHead = document.querySelector(".main-copy h2"),
+ // text = document.querySelector(".main-copy p"),
+ // appliedClass;
+
+ var $theImages = $('.image-holder'),
+ $theHeading = $(".heading"),
+ $theSubhead = $(".main-copy h2"),
+ $theSeasonText = $(".main-copy p"),
  appliedClass;
 
- // function basic(){
- //   heading.classList.add("spring");
- //   subHead.classList.add("spring");
- //
- //   subHead.firstChild.nodeValue = dynamicContent["spring"].headline;
- //   text.firstChild.nodeValue = dynamicContent["spring"].text;
- // }
 
 
  function changeElements() {
-   heading.classList.remove(appliedClass);
-   subHead.classList.remove(appliedClass);
+   $theHeading.removeClass(appliedClass);
+   $theSubhead.removeClass(appliedClass);
 
    appliedClass = this.id;
 
-   heading.classList.add(this.id);
-   subHead.classList.add(this.id);
+   $theHeading.addClass(this.id);
+   $theSubhead.addClass(this.id);
 
-   subHead.firstChild.nodeValue = dynamicContent[this.id].headline;
-   text.firstChild.nodeValue = dynamicContent[this.id].text;
+   $theSubhead.text(dynamicContent[event.currentTarget.id].headline);
+   $theSeasonText.text(dynamicContent[event.currentTarget.id].text);
  }
 
-[].forEach.call(images, function(image){
-  image.addEventListener('click', changeElements, true);
+
+$theImages.click(function() {
+  console.log("way to click playah");
+  changeElements();
 });
 
-// window.addEventListener("load", basic, false);
 
-subHead.firstChild.nodeValue = dynamicContent["spring"].headline;
-text.firstChild.nodeValue = dynamicContent["spring"].text;
-heading.classList.add("spring");
+
+$theSubhead.text (dynamicContent["spring"].headline);
+$theSeasonText.text (dynamicContent["spring"].text);
+$theHeading.addClass("spring");
 })();
